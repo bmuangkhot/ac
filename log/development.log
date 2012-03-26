@@ -1,0 +1,253 @@
+
+
+Started GET "/assets/rails.png" for 127.0.0.1 at 2012-03-26 19:07:45 +0200
+Served asset /rails.png - 200 OK (6ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2012-03-26 19:08:02 +0200
+Processing by UsersController#index as HTML
+PG::Error: ERROR:  relation "users" does not exist
+LINE 4:              WHERE a.attrelid = '"users"'::regclass
+                                        ^
+:             SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+              FROM pg_attribute a LEFT JOIN pg_attrdef d
+                ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+             WHERE a.attrelid = '"users"'::regclass
+               AND a.attnum > 0 AND NOT a.attisdropped
+             ORDER BY a.attnum
+
+Completed 500 Internal Server Error in 29ms
+
+ActiveRecord::StatementInvalid (PG::Error: ERROR:  relation "users" does not exist
+LINE 4:              WHERE a.attrelid = '"users"'::regclass
+                                        ^
+:             SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+              FROM pg_attribute a LEFT JOIN pg_attrdef d
+                ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+             WHERE a.attrelid = '"users"'::regclass
+               AND a.attnum > 0 AND NOT a.attisdropped
+             ORDER BY a.attnum
+):
+  app/controllers/users_controller.rb:5:in `index'
+
+
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p125/gems/actionpack-3.2.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (16.1ms)
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p125/gems/actionpack-3.2.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p125/gems/actionpack-3.2.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (24.6ms)
+  [1m[36m (80.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (3.0ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'schema_migrations'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36m (32.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.3ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to CreateUsers (20120326170712)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (10.7ms)[0m  CREATE TABLE "users" ("id" serial primary key, "firstname" character varying(255), "lastname" character varying(255), "login" character varying(255), "password" character varying(255), "phone_number" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120326170712')[0m
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.4ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35mPK and serial sequence (3.5ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"users"'::regclass
+
+  [1m[36m (2.8ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'users'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+[0m
+
+
+Started GET "/users/1" for 127.0.0.1 at 2012-03-26 19:09:11 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+Completed 500 Internal Server Error in 3ms
+
+ActiveRecord::RecordNotFound (Couldn't find User with id=1):
+  app/controllers/users_controller.rb:16:in `show'
+
+
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p125/gems/actionpack-3.2.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p125/gems/actionpack-3.2.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p125/gems/actionpack-3.2.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.4ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2012-03-26 19:09:17 +0200
+Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" 
+  Rendered users/index.html.erb within layouts/application (0.9ms)
+Compiled scaffolds.css  (17ms)  (pid 29287)
+Compiled users.css  (1ms)  (pid 29287)
+Compiled application.css  (30ms)  (pid 29287)
+Compiled jquery.js  (1ms)  (pid 29287)
+Compiled jquery_ujs.js  (0ms)  (pid 29287)
+Compiled users.js  (115ms)  (pid 29287)
+Compiled application.js  (193ms)  (pid 29287)
+Completed 200 OK in 313ms (Views: 311.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-03-26 19:09:17 +0200
+Served asset /application.css - 200 OK (19ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-03-26 19:09:17 +0200
+Served asset /scaffolds.css - 200 OK (2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-03-26 19:09:17 +0200
+Served asset /jquery_ujs.js - 200 OK (1ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-03-26 19:09:17 +0200
+Served asset /users.css - 200 OK (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-03-26 19:09:17 +0200
+Served asset /jquery.js - 200 OK (15ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-03-26 19:09:17 +0200
+Served asset /users.js - 200 OK (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-03-26 19:09:17 +0200
+Served asset /application.js - 200 OK (4ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2012-03-26 19:09:22 +0200
+Processing by UsersController#new as HTML
+  Rendered users/_form.html.erb (68.6ms)
+  Rendered users/new.html.erb within layouts/application (97.5ms)
+Completed 200 OK in 107ms (Views: 100.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-03-26 19:09:22 +0200
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-03-26 19:09:22 +0200
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-03-26 19:09:22 +0200
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-03-26 19:09:22 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-03-26 19:09:22 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-03-26 19:09:22 +0200
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-03-26 19:09:22 +0200
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2012-03-26 19:09:51 +0200
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"nXiPBERskMSX+8ETsrGBp5CuT5PvD0xA6dZvDu4C6bE=", "user"=>{"firstname"=>"Bertrand", "lastname"=>"Quentin", "login"=>"bq", "password"=>"[FILTERED]", "phone_number"=>"01 23 34 34 34 "}, "commit"=>"Create User"}
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (80.9ms)[0m  INSERT INTO "users" ("created_at", "firstname", "lastname", "login", "password", "phone_number", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["created_at", Mon, 26 Mar 2012 17:09:51 UTC +00:00], ["firstname", "Bertrand"], ["lastname", "Quentin"], ["login", "bq"], ["password", "qsqsqs"], ["phone_number", "01 23 34 34 34 "], ["updated_at", Mon, 26 Mar 2012 17:09:51 UTC +00:00]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 87ms (ActiveRecord: 81.9ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2012-03-26 19:09:51 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "1"]]
+  Rendered users/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 6ms (Views: 4.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-03-26 19:09:51 +0200
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-03-26 19:09:51 +0200
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-03-26 19:09:51 +0200
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-03-26 19:09:51 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-03-26 19:09:51 +0200
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-03-26 19:09:51 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-03-26 19:09:51 +0200
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2012-03-26 19:09:54 +0200
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" [0m
+  Rendered users/index.html.erb within layouts/application (18.6ms)
+Completed 200 OK in 24ms (Views: 22.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-03-26 19:09:54 +0200
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-03-26 19:09:54 +0200
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-03-26 19:09:54 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-03-26 19:09:54 +0200
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-03-26 19:09:54 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-03-26 19:09:54 +0200
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-03-26 19:09:54 +0200
+Served asset /application.js - 304 Not Modified (0ms)

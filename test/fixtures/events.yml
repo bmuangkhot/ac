@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  event_number: 1
+  event_datetime: 2012-03-26 19:59:07
+  event_type: MyString
+  event_place: MyString
+  event_message_state: MyString
+  event_received_by: MyString
+  event_received_at: 2012-03-26 19:59:07
+  event_acknowledged_by: MyString
+  event_acknowledged_at: 2012-03-26 19:59:07
+
+two:
+  event_number: 1
+  event_datetime: 2012-03-26 19:59:07
+  event_type: MyString
+  event_place: MyString
+  event_message_state: MyString
+  event_received_by: MyString
+  event_received_at: 2012-03-26 19:59:07
+  event_acknowledged_by: MyString
+  event_acknowledged_at: 2012-03-26 19:59:07

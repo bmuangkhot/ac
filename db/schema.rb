@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120326170712) do
+ActiveRecord::Schema.define(:version => 20120326202021) do
+
+  create_table "events", :force => true do |t|
+    t.integer  "event_number"
+    t.datetime "event_datetime"
+    t.string   "event_type"
+    t.string   "event_place"
+    t.string   "event_message_state"
+    t.string   "event_received_by"
+    t.datetime "event_received_at"
+    t.string   "event_acknowledged_by"
+    t.datetime "event_acknowledged_at"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "firstname"
@@ -19,8 +33,12 @@ ActiveRecord::Schema.define(:version => 20120326170712) do
     t.string   "login"
     t.string   "password"
     t.string   "phone_number"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.string   "password_confirmation"
+    t.string   "password_digest"
+    t.string   "email"
+    t.string   "name"
   end
 
 end

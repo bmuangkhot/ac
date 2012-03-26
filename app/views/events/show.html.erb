@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Event number:</b>
+  <%= @event.event_number %>
+</p>
+
+<p>
+  <b>Event datetime:</b>
+  <%= @event.event_datetime %>
+</p>
+
+<p>
+  <b>Event type:</b>
+  <%= @event.event_type %>
+</p>
+
+<p>
+  <b>Event place:</b>
+  <%= @event.event_place %>
+</p>
+
+<p>
+  <b>Event message state:</b>
+  <%= @event.event_message_state %>
+</p>
+
+<p>
+  <b>Event received by:</b>
+  <%= @event.event_received_by %>
+</p>
+
+<p>
+  <b>Event received at:</b>
+  <%= @event.event_received_at %>
+</p>
+
+<p>
+  <b>Event acknowledged by:</b>
+  <%= @event.event_acknowledged_by %>
+</p>
+
+<p>
+  <b>Event acknowledged at:</b>
+  <%= @event.event_acknowledged_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>

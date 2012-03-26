@@ -1,0 +1,53 @@
+<%= form_for(@event) do |f| %>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% @event.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :event_number %><br />
+    <%= f.number_field :event_number %>
+  </div>
+  <div class="field">
+    <%= f.label :event_datetime %><br />
+    <%= f.datetime_select :event_datetime %>
+  </div>
+  <div class="field">
+    <%= f.label :event_type %><br />
+    <%= f.text_field :event_type %>
+  </div>
+  <div class="field">
+    <%= f.label :event_place %><br />
+    <%= f.text_field :event_place %>
+  </div>
+  <div class="field">
+    <%= f.label :event_message_state %><br />
+    <%= f.text_field :event_message_state %>
+  </div>
+  <div class="field">
+    <%= f.label :event_received_by %><br />
+    <%= f.text_field :event_received_by %>
+  </div>
+  <div class="field">
+    <%= f.label :event_received_at %><br />
+    <%= f.datetime_select :event_received_at %>
+  </div>
+  <div class="field">
+    <%= f.label :event_acknowledged_by %><br />
+    <%= f.text_field :event_acknowledged_by %>
+  </div>
+  <div class="field">
+    <%= f.label :event_acknowledged_at %><br />
+    <%= f.datetime_select :event_acknowledged_at %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
